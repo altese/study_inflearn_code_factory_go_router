@@ -2,6 +2,8 @@ import 'package:go_router/go_router.dart';
 import 'package:study_inflearn_code_factory_go_router/screens/1_basic_screen.dart';
 import 'package:study_inflearn_code_factory_go_router/screens/2_named_screen.dart';
 import 'package:study_inflearn_code_factory_go_router/screens/3_push_screen.dart';
+import 'package:study_inflearn_code_factory_go_router/screens/4_pop_base_screen.dart';
+import 'package:study_inflearn_code_factory_go_router/screens/5_pop_return_screen.dart';
 import 'package:study_inflearn_code_factory_go_router/screens/root_screen.dart';
 
 final router = GoRouter(
@@ -28,6 +30,19 @@ final router = GoRouter(
         GoRoute(
           path: 'push',
           builder: (context, state) => const PushScreen(),
+        ),
+        // [ /pop ] => PopBaseScreen
+        GoRoute(
+          path: 'pop',
+          builder: (context, state) => const PopBaseScreen(),
+          routes: [
+            // [ /pop/return ] => PopReturnScreen
+            // 데이터 전달 가능
+            GoRoute(
+              path: 'return',
+              builder: (context, state) => const PopReturnScreen(),
+            ),
+          ],
         ),
       ],
     ),
