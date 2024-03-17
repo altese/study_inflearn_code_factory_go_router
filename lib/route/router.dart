@@ -6,6 +6,8 @@ import 'package:study_inflearn_code_factory_go_router/screens/4_pop_base_screen.
 import 'package:study_inflearn_code_factory_go_router/screens/5_pop_return_screen.dart';
 import 'package:study_inflearn_code_factory_go_router/screens/6_path_param.dart';
 import 'package:study_inflearn_code_factory_go_router/screens/7_query_param_screen.dart';
+import 'package:study_inflearn_code_factory_go_router/screens/8_nested_child_screen.dart';
+import 'package:study_inflearn_code_factory_go_router/screens/8_nested_screen.dart';
 import 'package:study_inflearn_code_factory_go_router/screens/root_screen.dart';
 
 final router = GoRouter(
@@ -59,6 +61,28 @@ final router = GoRouter(
         GoRoute(
           path: 'query_param',
           builder: (context, state) => const QueryParamScreen(),
+        ),
+        ShellRoute(
+          // NestedScreen: routes를 전부 감싸는 위젯
+          // child: routes
+          builder: (context, state, child) => NestedScreen(child: child),
+          routes: [
+            GoRoute(
+              path: 'nested/a',
+              builder: (context, state) =>
+                  const NestedChildScreen(routeName: '/nested/a'),
+            ),
+            GoRoute(
+              path: 'nested/b',
+              builder: (context, state) =>
+                  const NestedChildScreen(routeName: '/nested/b'),
+            ),
+            GoRoute(
+              path: 'nested/c',
+              builder: (context, state) =>
+                  const NestedChildScreen(routeName: '/nested/c'),
+            ),
+          ],
         ),
       ],
     ),
